@@ -5,10 +5,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation,
 } from "react-native";
 import * as firebase from "firebase";
 
 export default class LoginScreen extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
+
   state = {
     email: "",
     password: "",
@@ -24,8 +31,25 @@ export default class LoginScreen extends React.Component {
       .catch((error) => this.setState({ errorMessage: error.message }));
   };
   render() {
+    LayoutAnimation.easeInEaseOut();
+
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content"></StatusBar>
+        <Image
+          source={require("../assets/authHeader.png")}
+          style={{ marginTop: -176, marginLeft: -50 }}
+        ></Image>
+
+        <Image
+          source={require("../assets/authFooter.png")}
+          style={{ position: "absolute", bottom: -325, right: -225 }}
+        ></Image>
+
+        <Image
+          source={require("../assets/loginLogo.png")}
+          style={{ marginTop: -110, alignSelf: "center" }}
+        ></Image>
         <Text style={styles.greeting}> {"Hello again.\nWelcome back."}</Text>
 
         <View style={styles.errorMessage}>
@@ -80,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    marginTop: 32,
+    marginTop: -32,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center",
